@@ -11,5 +11,7 @@ RUN apt update -y &&\
     rm -rf ./aws && \
     apt purge unzip -y && \
     apt purge curl -y
-    
+
+WORKDIR /app
+
 ENTRYPOINT ["aws"]
