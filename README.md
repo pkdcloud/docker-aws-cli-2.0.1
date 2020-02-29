@@ -13,20 +13,23 @@ DockerHub: <https://hub.docker.com/r/pkdcloud/aws-cli-2>
 docker build -t pkdcloud/aws-cli-2
 ```
 
-## Usage
+## Sample Usage
+
+deploy a cloudformation template mounting your localdirectory
 
 ```
 export AWS_DEFAULT_REGION="<region>"
 export AWS_PROFILE="<profile>"
-docker run pkdcloud/aws-cli-2 --version
+docker run -v $pwd:/app -v $HOME/.aws:/root/.aws pkdcloud/aws-cli-2 cloudformation deploy --template-file <value>
+--stack-name <value> --region $AWS_DEFAULT_REGION --profile $AWS_PROFILE
 ```
 
-### For configuring aws sso
+### For configuring aws sso locally
 
 ```bash
 aws configure sso
 ```
-### To login with an aws named profile
+### To login with an aws named profile locally
 
 ```bash
 aws sso login --profile my_dev_profile
